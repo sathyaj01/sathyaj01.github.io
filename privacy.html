@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How Scale Local's Ubuntu application processes local scale records and optional Google Health authorization.">
+  <meta name="referrer" content="no-referrer">
+  <title>Privacy policy | Scale Local</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">Scale Local</a>
+    <nav aria-label="Main navigation">
+      <a href="./">Home</a>
+      <a href="https://github.com/sathyaj01/scale/issues">Contact</a>
+    </nav>
+  </header>
+  <main class="policy">
+    <h1>Scale Local privacy policy</h1>
+    <p class="muted">Effective date: 16 October 2026</p>
+    <p>This policy describes the self-hosted <strong>Scale Local Ubuntu
+      application</strong>, its optional Google Health API integration, and this
+      public information website. The separate Android application's Health
+      Connect integration has its own in-app privacy disclosure.</p>
+
+    <section aria-labelledby="operator">
+      <h2 id="operator">1. Self-hosted operation</h2>
+      <p>The installation owner runs Scale Local on their own Ubuntu computer and
+        controls that computer, selected scales, dashboard, backups and Google
+        connection. The project maintainer does not operate a central
+        measurement-collection service and does not automatically receive
+        records, credentials or diagnostic logs from installations.</p>
+    </section>
+    <section aria-labelledby="local">
+      <h2 id="local">2. Data processed and stored locally</h2>
+      <p>The application receives Bluetooth advertisements to recognize explicitly
+        selected, supported scales. Saved local records can include:</p>
+      <ul>
+        <li>Final weight, Ubuntu receipt timestamp, and the local UTC offset
+          recorded at that time.</li>
+        <li>Scale Bluetooth address and model, signal strength, impedance values,
+          and the raw measurement payload.</li>
+        <li>Local record identifiers, deduplication state, selected scale addresses,
+          sharing preferences, upload state, returned Google resource names,
+          and non-sensitive synchronization errors.</li>
+      </ul>
+      <p>These records support local history, display, CSV export, duplicate
+        handling and the optional upload queue. Temporary settling readings can
+        be displayed but are not saved as final measurements. The application
+        does not identify who is standing on a scale; a shared scale can record
+        other people's weigh-ins.</p>
+    </section>
+    <section aria-labelledby="identity">
+      <h2 id="identity">3. Google identity and authorization</h2>
+      <p>Google sharing is optional and disabled by default. Connecting an account
+        uses Google's OAuth consent flow with:</p>
+      <ul>
+        <li><code>openid</code> to verify the selected Google account's identity
+          and bind queued records to that account/client.</li>
+        <li><code>https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly</code>
+          to create weight records in Google Health.</li>
+      </ul>
+      <p>The health write permission is not limited to weight at Google's
+        permission boundary: it can add supported health measurements and
+        edit/delete data the application adds. Scale Local implements only
+        weight creation, not cloud record editing/deletion or health-history
+        reading. It does not request email, profile, or health-read scopes.</p>
+      <p>Signed identity information is verified to obtain an account identifier.
+        A hash binding that identifier and OAuth client is retained locally.
+        The application also processes OAuth client configuration, access
+        tokens and refresh tokens. Access tokens stay in memory; refresh tokens
+        and client configuration are kept in service-user-owned, permission-
+        restricted files on the Ubuntu computer. OAuth callback access logs are
+        suppressed. A Google password is entered only into Google's own
+        sign-in flow, not into Scale Local.</p>
+    </section>
+    <section aria-labelledby="sharing">
+      <h2 id="sharing">4. What is sent to Google</h2>
+      <p>After authorization and explicit enablement, newly saved final readings
+        from the selected scales are eligible only if their unrounded weight is
+        <strong>strictly over 140 lb</strong>. The uploaded measurement contains
+        only weight and measurement time, including UTC offset. The timestamp is
+        the Ubuntu receipt time of the saved final measurement.</p>
+      <p>Bluetooth address, signal strength, raw payload, impedance,
+        body-composition estimates and local record identifiers are not included
+        in the uploaded measurement. Google receives the OAuth authorization
+        needed to process the request and can associate API/application metadata
+        with the record. Google processes submitted data under its own terms
+        and <a href="https://policies.google.com/privacy">privacy policy</a>.</p>
+      <p>Older unqueued history is not backfilled. Existing consented queue items
+        may resume when sharing is re-enabled. Potentially completed but
+        unconfirmed requests are held for review to reduce duplicate uploads.</p>
+    </section>
+    <section aria-labelledby="uses">
+      <h2 id="uses">5. Permitted uses and limited use commitment</h2>
+      <p>Google identity and authorization data are used only to provide the
+        requested account connection and weight-upload feature. Locally received
+        measurements are used for the application's visible monitoring,
+        history, export and sharing features.</p>
+      <p>Scale Local's use and transfer of information received from Google APIs
+        adheres to the
+        <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+        including its Limited Use requirements.</p>
+      <p>The application does not sell Google user data or measurements, use
+        them for advertising or credit decisions, or send them to AI services
+        for model training. It has no built-in analytics, advertising, or
+        developer telemetry service. The maintainer has no routine access to an
+        installation's Google data. Any separately requested support disclosure
+        must be limited to what the installation owner chooses to share.</p>
+    </section>
+    <section aria-labelledby="security">
+      <h2 id="security">6. Access and security</h2>
+      <p>Outbound Google requests use HTTPS. Database and credential files use
+        owner-restricted operating-system permissions. These files are not
+        separately encrypted by the application; the owner is responsible for
+        account security, disk encryption and protected backups.</p>
+      <p>The default read-only dashboard listens on localhost and has no login.
+        Other users or programs on the same computer may be able to view it.
+        Optional LAN access requires a separately configured HTTPS/password
+        proxy. The owner must not expose the unauthenticated dashboard to the
+        public internet. This website does not proxy or connect to dashboards.</p>
+      <p>Desktop OAuth clients cannot keep a confidential client secret.
+        Refresh tokens must be treated as sensitive even if a client ID/secret
+        is known. If credentials are compromised, revoke the Google connection
+        and replace affected credentials.</p>
+    </section>
+    <section aria-labelledby="retention">
+      <h2 id="retention">7. Retention, revocation and deletion</h2>
+      <p>Local records have no automatic retention limit and remain until the
+        owner removes them from their local storage. The owner controls exported
+        CSV files and backups; removing an original file does not remove copies.
+        The read-only dashboard does not provide deletion controls.</p>
+      <p>Pausing sharing stops new queueing and future requests, but an already
+        sent request may finish. Disconnecting attempts to revoke Google
+        authorization before removing local credentials and cancelling pending
+        uploads. If revocation cannot be confirmed, the application reports the
+        failure rather than claiming that Google access was removed.</p>
+      <p>Google access can also be revoked through
+        <a href="https://myaccount.google.com/connections">Google Account connections</a>.
+        Deleting a local token file is not revocation of a stolen copy.
+        Disconnecting or deleting local history does not delete measurements
+        already held by Google. Use Google Health's available data/privacy
+        controls or Google support to manage those cloud records.</p>
+    </section>
+    <section aria-labelledby="website">
+      <h2 id="website">8. This information website</h2>
+      <p>This is a static site hosted by GitHub Pages. It has no sign-in form,
+        measurement API, embedded analytics, third-party fonts, cookies or
+        browser-storage code. It does not receive Google authorization codes,
+        tokens or scale measurements.</p>
+      <p>The hosting provider can process standard connection/request information
+        when a browser visits the site. See the
+        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>
+        for its handling of hosting-related data.</p>
+    </section>
+    <section aria-labelledby="contact">
+      <h2 id="contact">9. Contact and policy updates</h2>
+      <p>For software or policy questions, use the
+        <a href="https://github.com/sathyaj01/scale/issues">project issue tracker</a>.
+        It is public: do not post measurements, Bluetooth addresses, credentials,
+        tokens or personal diagnostic logs. For data retained by a particular
+        installation, contact that installation's owner; the maintainer cannot
+        retrieve or erase records from computers they do not control.</p>
+      <p>Changes to data handling must be reflected in this policy and the
+        application's disclosures. The effective date above identifies this
+        version. This page describes application behavior and is not a claim
+        that Google has verified or endorsed the project.</p>
+    </section>
+  </main>
+  <footer>
+    <p><a href="./">Scale Local home</a> &middot;
+      <a href="https://github.com/sathyaj01/scale">Information-site repository</a></p>
+  </footer>
+</body>
+</html>
