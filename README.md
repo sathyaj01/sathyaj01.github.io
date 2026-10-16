@@ -5,7 +5,7 @@ policy for the self-hosted Scale Local Ubuntu monitor and its optional Google
 Health integration. It does not contain a live dashboard, measurements,
 credentials, OAuth callback or the private application repository.
 
-Intended GitHub Pages URLs:
+GitHub Pages URLs:
 
 - Homepage: `https://sathyaj01.github.io/scale/`
 - Privacy policy: `https://sathyaj01.github.io/scale/privacy.html`
@@ -21,6 +21,10 @@ project to verify control of the hosted site. If Google requires an HTML file
 or meta tag, use the exact verification artifact generated for that account
 and property; do not invent one. A verification artifact is meant to be public,
 unlike OAuth client secrets, refresh tokens or authorization codes.
+
+`google9917b5c600d1fa1a.html` is the account-provided HTML verification file.
+Keep it at the site root in future deployments so Google can recheck it.
+The owner must still click **Verify** in Search Console after publication.
 
 Do not claim ownership of `github.com` or `github.io`. The Pages namespace is
 `sathyaj01.github.io`; acceptance/verification of that namespace is determined by
