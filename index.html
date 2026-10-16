@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Scale Local is a self-hosted Ubuntu Bluetooth scale monitor with optional Google Health weight sharing.">
+  <meta name="description" content="Scale Local keeps weight history on your computer, with optional Google Health sharing.">
   <meta name="referrer" content="no-referrer">
-  <title>Scale Local | Ubuntu scale monitoring</title>
+  <title>Scale Local</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -18,71 +18,23 @@
   </header>
   <main>
     <section class="hero" aria-labelledby="intro">
-      <p class="eyebrow">SELF-HOSTED UBUNTU SOFTWARE</p>
-      <h1 id="intro">Your scale, monitored locally.</h1>
-      <p class="lead">Scale Local receives supported Etekcity ESF14 Bluetooth scale
-        advertisements on an Ubuntu computer, saves final weights in local SQLite
-        history, and provides a read-only dashboard and CSV export.</p>
-      <p>Local capture does not require a Google account. Optional Google Health
-        sharing is off until the installation owner authorizes Google access and
-        explicitly enables uploads.</p>
+      <h1 id="intro">Scale Local</h1>
+      <p class="lead">Your weight history, on your own computer.</p>
+      <p>Scale Local records measurements from compatible Bluetooth scales.
+        Optional Google Health sharing is off by default and starts only after
+        you authorize your account and enable it.</p>
+      <p>You can pause sharing or disconnect at any time.</p>
       <a class="button" href="./privacy.html">Read the privacy policy</a>
     </section>
-    <section aria-labelledby="features">
-      <h2 id="features">What the application does</h2>
-      <ul>
-        <li>Continuously monitors explicitly selected, supported Bluetooth scales
-          while the Ubuntu computer is awake and its adapter is available.</li>
-        <li>Keeps local measurement history, supports kilogram/pound display, and
-          exports local records as CSV.</li>
-        <li>Optionally uploads newly saved final weights strictly over
-          <strong>140 lb</strong> to the user's authorized Google Health account.</li>
-        <li>Shows upload progress and errors. Uncertain uploads are held for review
-          rather than automatically retried in a way that could create duplicates.</li>
-      </ul>
-      <p>The weight cutoff is not person identification. The owner must ensure that
-        readings from a selected scale belong to the connected Google account.</p>
-    </section>
-    <section aria-labelledby="google">
-      <h2 id="google">Optional Google Health integration</h2>
-      <p>The installed Ubuntu application uses Google OAuth to obtain permission.
-        It sends only weight and measurement time, including the recorded UTC
-        offset. It does not upload Bluetooth addresses, raw scale packets,
-        impedance, or body-composition estimates.</p>
-      <p>The requested health-measurements write scope is broader than weight,
-        although this application implements weight uploads only. Basic
-        <code>openid</code> identity is used to bind the installation to the
-        selected account. No health-history read, email, or profile scope is
-        requested.</p>
-      <p>Authorization takes place through Google's sign-in page and a loopback
-        callback on the owner's computer, optionally reached through SSH.
-        This website does not perform sign-in, receive authorization codes, or
-        collect measurements or tokens.</p>
-    </section>
-    <section aria-labelledby="controls">
-      <h2 id="controls">Control stays with the installation owner</h2>
-      <p>Sharing can be paused or disconnected through the local command-line
-        interface. Older unqueued history is not automatically uploaded.
-        Disconnecting removes local authorization after confirmed revocation;
-        it does not delete weights already sent to Google.</p>
-      <p>The default dashboard stays on localhost. Optional LAN access uses a
-        separately configured HTTPS/password proxy. This public information site
-        is not the dashboard and has no connection to any installation.</p>
-    </section>
     <section aria-labelledby="contact">
-      <h2 id="contact">Contact and support</h2>
-      <p>For software or privacy questions, use the
-        <a href="https://github.com/sathyaj01/scale/issues">project issue tracker</a>.
-        Issues are public: do not include measurements, device addresses, Google
-        credentials, authorization URLs, or diagnostic logs containing personal
-        information. For data held by an installation, contact its owner.</p>
+      <h2 id="contact">Contact</h2>
+      <p>For questions, contact the maintainer through the
+        <a href="https://github.com/sathyaj01/scale/issues">public issue tracker</a>.
+        Do not post health data or credentials.</p>
     </section>
   </main>
   <footer>
-    <p><a href="./privacy.html">Privacy policy</a> &middot;
-      <a href="https://github.com/sathyaj01/scale">Information-site repository</a></p>
-    <p>Scale Local is an independent project, not an official Google, VeSync,
-      or Etekcity product. It is not a medical service.</p>
+    <p>Independent software. Not an official Google product or medical service.</p>
   </footer>
 </body>
 </html>
