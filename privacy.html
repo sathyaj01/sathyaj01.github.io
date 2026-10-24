@@ -18,7 +18,7 @@
   </header>
   <main class="policy">
     <h1>Scale Local privacy policy</h1>
-    <p class="muted">Effective date: 16 October 2026</p>
+    <p class="muted">Effective date: 24 October 2026</p>
     <p>Scale Local is a personal-use app that processes measurements, times,
       device information and sharing settings for weight history. Google account
       identity and authorization credentials are used only to connect your
@@ -26,13 +26,19 @@
     <p>With your consent and sharing enabled, only eligible new weights and
       measurement times are uploaded to Google Health. Google's write permission
       is broader than weight, but this app does not read health history.</p>
-    <p>Records and credentials are stored on your computer using its access
-      controls; Google transfers use HTTPS. The app does not send records to the
-      maintainer, sell data, or use it for ads or AI training.</p>
-    <p>Local data stays until you delete it; stop the app and remove its stored
-      data, exports and backups. You can disconnect or
+    <p>Records are stored locally or, if you enable Azure storage, uploaded with
+      device identifiers and raw scale data to your configured Azure Cosmos DB account.
+      Credentials remain on your computer with operating-system access controls;
+      cloud transfers use HTTPS. The app does not send records to the maintainer,
+      sell data, or use it for ads or AI training.</p>
+    <p>Local history stays until you delete it; Azure-mode queued measurements
+      are removed after confirmed saves. To delete local data, stop the app and
+      remove its stored data, exports and backups. You can disconnect or
       <a href="https://myaccount.google.com/connections">revoke Google access</a>;
-      this does not delete Google-held records, which you manage in Google Health.</p>
+      this does not delete cloud records. Azure and Google records remain until
+      you delete them using those services' data controls. Azure processing is
+      subject to the
+      <a href="https://www.microsoft.com/privacy/privacystatement">Microsoft privacy statement</a>.</p>
     <p>Scale Local's use and transfer of information received from Google APIs
       adheres to the
       <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
